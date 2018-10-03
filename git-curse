@@ -13,7 +13,12 @@ version() {
 }
 
 random() {
-   echo $@ | tr \  \\n | shuf -n 1
+    hostos=$(uname -s)
+    if [ $hostos = "Darwin" ]; then
+        echo $@ | tr \  \\n | gshuf -n 1
+    else
+        echo $@ | tr \  \\n | shuf -n 1
+    fi
 }
 
 insult() {
